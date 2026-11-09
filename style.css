@@ -1,0 +1,527 @@
+/* =========================================================
+   PTI Web Design Contest 2026 - style.css
+   Konsep: kanvas desain (titik-titik grid + kotak seleksi)
+   ========================================================= */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  --bg: #f2f4fa;
+  --surface: #ffffff;
+  --ink: #171a33;
+  --muted: #53597a;
+  --line: #d5daea;
+  --primary: #4b2fe0;
+  --primary-ink: #ffffff;
+  --accent: #ffc933;
+  --ok: #0b7a4b;
+  --ok-bg: #e3f6ec;
+  --err: #b81d55;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius: 10px;
+  --max: 1080px;
+}
+
+/* Mode gelap: dipilih lewat atribut data-theme (diatur script.js) */
+:root[data-theme="dark"] {
+  --bg: #11132a;
+  --surface: #1b1e3d;
+  --ink: #eef0ff;
+  --muted: #a4a9cc;
+  --line: #333763;
+  --primary: #a495ff;
+  --primary-ink: #11132a;
+  --ok: #4fd6a0;
+  --ok-bg: #153a33;
+  --err: #ff8db3;
+}
+
+/* ---------- 2. Reset dan dasar ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  margin: 0 0 .6em;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0 0 1em; }
+ul, ol { margin: 0; padding: 0; }
+a { color: inherit; }
+
+code {
+  font-size: .9em;
+  padding: .1em .4em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: .6rem 1rem;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 6px;
+  z-index: 100;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- 3. Tombol ---------- */
+.btn {
+  display: inline-block;
+  padding: .8rem 1.4rem;
+  font: 600 1rem var(--font-body);
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.btn-primary { background: var(--primary); color: var(--primary-ink); }
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--primary); }
+.btn-block { width: 100%; }
+
+/* ---------- 4. Header dan navigasi ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font: 800 1.15rem var(--font-display);
+  text-decoration: none;
+}
+.brand-mark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--primary);
+  background: var(--accent);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+.nav-list a {
+  text-decoration: none;
+  font-weight: 500;
+  padding: .3rem 0;
+  border-bottom: 2px solid transparent;
+}
+.nav-list a:hover { border-bottom-color: var(--primary); }
+.nav-list .nav-cta {
+  padding: .45rem 1rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+}
+.nav-list .nav-cta:hover { background: var(--primary); color: var(--primary-ink); }
+
+.header-actions { display: flex; align-items: center; gap: .5rem; }
+
+.icon-btn {
+  font: 500 .9rem var(--font-body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  min-height: 40px;
+  padding: 0 .9rem;
+  cursor: pointer;
+}
+.icon-btn:hover { border-color: var(--primary); }
+
+/* Tombol hamburger: disembunyikan di desktop */
+.menu-btn { display: none; width: 44px; padding: 0; position: relative; }
+.menu-bars,
+.menu-bars::before,
+.menu-bars::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  width: 20px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform .2s ease, opacity .2s ease;
+}
+.menu-bars { top: 50%; margin-top: -1px; }
+.menu-bars::before { left: 0; top: -6px; }
+.menu-bars::after { left: 0; top: 6px; }
+.menu-btn[aria-expanded="true"] .menu-bars { background: transparent; }
+.menu-btn[aria-expanded="true"] .menu-bars::before { transform: translateY(6px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] .menu-bars::after { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---------- 5. Hero ---------- */
+.hero {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 18%, transparent) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.hero-kicker {
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Kotak seleksi bergaya alat desain di sekitar judul */
+.selection {
+  position: relative;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--primary);
+}
+.selection h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+  font-weight: 800;
+}
+.handle {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: var(--surface);
+  border: 2px solid var(--primary);
+}
+.h-tl { top: -7px; left: -7px; }
+.h-tr { top: -7px; right: -7px; }
+.h-bl { bottom: -7px; left: -7px; }
+.h-br { bottom: -7px; right: -7px; }
+
+.cursor-tag {
+  position: absolute;
+  right: -2px;
+  bottom: -2.2rem;
+  padding: .15rem .65rem;
+  font: 600 .8rem var(--font-body);
+  background: var(--primary);
+  color: var(--primary-ink);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  animation: tag-in .6s .4s both ease-out;
+}
+@keyframes tag-in {
+  from { opacity: 0; transform: translate(-30px, -20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero-lead {
+  max-width: 54ch;
+  font-size: 1.1rem;
+  margin-top: 2.5rem;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* Kartu hitung mundur */
+.countdown-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.countdown-title { font-size: 1.1rem; margin-bottom: 1rem; }
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+}
+.cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .75rem .25rem;
+  background: var(--bg);
+  border-radius: 8px;
+}
+.cd-num {
+  font: 800 clamp(1.5rem, 4vw, 2.1rem) var(--font-display);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.cd-label { font-size: .8rem; color: var(--muted); }
+.countdown-note { margin: 1rem 0 0; font-size: .92rem; color: var(--muted); }
+.countdown-note.closed { color: var(--err); font-weight: 600; }
+
+/* ---------- 6. Section umum ---------- */
+.section { padding: clamp(3rem, 7vw, 5rem) 0; }
+
+.section-head { max-width: 62ch; margin-bottom: 2.25rem; }
+.section-head h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.section-head p { color: var(--muted); }
+
+h3 { font-size: 1.3rem; }
+
+/* ---------- 7. Informasi kegiatan ---------- */
+.info-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.info-block {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.info-block p:last-child { margin-bottom: 0; }
+
+.detail-list { margin: 0; }
+.detail-list div {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: .75rem;
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.detail-list div:last-child { border-bottom: 0; }
+.detail-list dt { font-weight: 600; color: var(--muted); }
+.detail-list dd { margin: 0; }
+
+.categories { margin-bottom: 3rem; }
+.category-list { list-style: none; border-top: 2px solid var(--ink); }
+.category-list li {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) 2fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.category-list strong { font-family: var(--font-display); font-size: 1.1rem; }
+.category-list span { color: var(--muted); }
+
+.rules-prizes {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.check-list { list-style: none; }
+.check-list li {
+  position: relative;
+  padding: .35rem 0 .35rem 1.6rem;
+}
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .85rem;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border: 2px solid var(--primary);
+}
+
+.prize-list { list-style: none; margin-bottom: 1rem; }
+.prize-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.prize-list strong { font-family: var(--font-display); font-size: 1.15rem; }
+.small { font-size: .9rem; color: var(--muted); }
+
+/* Jadwal: hanya bagian ini yang benar-benar berurutan, maka berbentuk garis waktu */
+.timeline {
+  list-style: none;
+  border-left: 3px solid var(--primary);
+  margin-left: .5rem;
+}
+.timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1rem;
+  padding: .7rem 0 .7rem 1.5rem;
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 1.15rem;
+  width: 17px;
+  height: 17px;
+  background: var(--accent);
+  border: 3px solid var(--primary);
+}
+.timeline time { font-weight: 600; }
+
+/* ---------- 8. Formulir ---------- */
+.section-form {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.form-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.form-layout .section-head { margin-bottom: 0; }
+
+.form-panel {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.field { margin-bottom: 1.25rem; }
+.field label { display: block; font-weight: 600; margin-bottom: .35rem; }
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field select {
+  width: 100%;
+  min-height: 46px;
+  padding: .6rem .8rem;
+  font: 1rem var(--font-body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+}
+.field input:focus,
+.field select:focus { outline: none; border-color: var(--primary); }
+
+.field.invalid input,
+.field.invalid select { border-color: var(--err); }
+.field.valid input,
+.field.valid select { border-color: var(--ok); }
+
+.error {
+  margin: .35rem 0 0;
+  min-height: 0;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--err);
+}
+.error:empty { display: none; }
+
+.field-check {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  column-gap: .75rem;
+  align-items: start;
+}
+.field-check input { width: 20px; height: 20px; margin-top: .2rem; accent-color: var(--primary); }
+.field-check label { font-weight: 400; margin: 0; }
+.field-check .error { grid-column: 2; }
+
+.success-panel {
+  padding: 1.5rem;
+  background: var(--ok-bg);
+  border: 2px solid var(--ok);
+  border-radius: var(--radius);
+}
+.success-panel h3 { color: var(--ok); }
+.success-panel[hidden] { display: none; }
+
+/* ---------- 9. Footer ---------- */
+.site-footer { padding: 1.75rem 0; border-top: 1px solid var(--line); font-size: .92rem; color: var(--muted); }
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; }
+.footer-inner p { margin: 0; }
+
+/* ---------- 10. Responsif ---------- */
+@media (max-width: 860px) {
+  .hero-grid,
+  .info-layout,
+  .rules-prizes,
+  .form-layout { grid-template-columns: 1fr; }
+
+  .category-list li { grid-template-columns: 1fr; gap: .15rem; }
+  .timeline li { grid-template-columns: 1fr; gap: 0; }
+
+  /* Menu mobile: panel turun dari header */
+  .menu-btn { display: inline-block; }
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    display: none;
+  }
+  .nav.open { display: block; }
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: min(100% - 2.5rem, var(--max));
+    margin-inline: auto;
+    padding: .5rem 0 1rem;
+  }
+  .nav-list a { display: block; padding: .8rem 0; border-bottom: 1px solid var(--line); }
+  .nav-list .nav-cta { margin-top: .75rem; text-align: center; border: 2px solid var(--primary); }
+}
+
+@media (max-width: 420px) {
+  .selection { padding: .9rem; }
+  .countdown { gap: .35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cursor-tag { animation: none; }
+  .btn, .menu-bars, .menu-bars::before, .menu-bars::after { transition: none; }
+}

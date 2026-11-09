@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PTI Web Design Contest 2026</title>
+  <meta name="description" content="Kompetisi desain web antarmahasiswa dan pelajar yang diselenggarakan Program Studi Pendidikan Teknik Informatika. Daftar sebelum 5 Desember 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#informasi">Lewati ke konten</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#beranda" aria-label="PTI Web Design Contest, ke beranda">
+        <span class="brand-mark" aria-hidden="true"></span>
+        PTI Web Contest
+      </a>
+
+      <nav id="menu" class="nav" aria-label="Navigasi utama">
+        <ul class="nav-list">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#informasi">Informasi</a></li>
+          <li><a href="#jadwal">Jadwal</a></li>
+          <li><a href="#daftar" class="nav-cta">Daftar</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="themeToggle" class="icon-btn" aria-pressed="false" aria-label="Ganti ke mode gelap">
+          <span class="icon-btn-text" id="themeLabel">Gelap</span>
+        </button>
+        <button type="button" id="menuToggle" class="icon-btn menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Buka menu">
+          <span class="menu-bars" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ BERANDA / HERO ============ -->
+    <section id="beranda" class="hero" aria-labelledby="judul-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="hero-kicker">Program Studi Pendidikan Teknik Informatika</p>
+
+          <div class="selection">
+            <span class="handle h-tl" aria-hidden="true"></span>
+            <span class="handle h-tr" aria-hidden="true"></span>
+            <span class="handle h-bl" aria-hidden="true"></span>
+            <span class="handle h-br" aria-hidden="true"></span>
+            <span class="cursor-tag" aria-hidden="true">Peserta</span>
+            <h1 id="judul-hero">Rancang satu halaman web yang bisa mengajar.</h1>
+          </div>
+
+          <p class="hero-lead">
+            PTI Web Design Contest 2026 mengajak mahasiswa dan pelajar membuat landing page
+            bertema pendidikan digital dengan HTML, CSS, dan JavaScript. Waktu pengerjaan tujuh hari.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#daftar">Daftar sekarang</a>
+            <a class="btn btn-ghost" href="#informasi">Lihat ketentuan</a>
+          </div>
+        </div>
+
+        <aside class="countdown-card" aria-labelledby="judul-countdown">
+          <h2 id="judul-countdown" class="countdown-title">Pendaftaran ditutup dalam</h2>
+          <div id="countdown" class="countdown" role="timer" aria-live="off">
+            <div class="cd-unit"><span class="cd-num" id="cd-days">00</span><span class="cd-label">hari</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">jam</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cd-minutes">00</span><span class="cd-label">menit</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cd-seconds">00</span><span class="cd-label">detik</span></div>
+          </div>
+          <p id="countdown-note" class="countdown-note">
+            Batas akhir: <time datetime="2026-12-05T23:59:00+07:00">5 Desember 2026, 23.59 WIB</time>
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ INFORMASI KEGIATAN ============ -->
+    <section id="informasi" class="section" aria-labelledby="judul-informasi">
+      <div class="container">
+        <header class="section-head">
+          <h2 id="judul-informasi">Informasi kegiatan</h2>
+          <p>Kompetisi ini terbuka untuk mahasiswa dan pelajar SMA/SMK yang ingin menguji kemampuan desain dan pemrograman web statis.</p>
+        </header>
+
+        <div class="info-layout">
+          <article class="info-block" aria-labelledby="judul-tentang">
+            <h3 id="judul-tentang">Tentang kompetisi</h3>
+            <p>
+              Peserta membuat satu landing page yang menjelaskan sebuah topik pendidikan digital,
+              misalnya belajar coding, literasi data, atau keamanan siber untuk siswa. Juri menilai
+              kejelasan pesan, kualitas desain, struktur kode, dan kenyamanan di layar ponsel maupun komputer.
+            </p>
+            <p>
+              Karya dikerjakan secara individu tanpa framework, lalu dipresentasikan singkat di babak final.
+            </p>
+          </article>
+
+          <article class="info-block" aria-labelledby="judul-detail">
+            <h3 id="judul-detail">Detail acara</h3>
+            <dl class="detail-list">
+              <div><dt>Final</dt><dd><time datetime="2026-12-20">Minggu, 20 Desember 2026</time></dd></div>
+              <div><dt>Tempat</dt><dd>Laboratorium Komputer PTI dan Zoom (untuk peserta luar kota)</dd></div>
+              <div><dt>Biaya</dt><dd>Gratis</dd></div>
+              <div><dt>Peserta</dt><dd>Individu, maksimal 100 orang</dd></div>
+              <div><dt>Kontak</dt><dd>@hima.pti (Instagram)</dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <div class="categories" aria-labelledby="judul-kategori">
+          <h3 id="judul-kategori">Pilih salah satu kategori</h3>
+          <ul class="category-list">
+            <li>
+              <strong>Landing page edukasi</strong>
+              <span>Halaman promosi kursus, kelas, atau modul belajar.</span>
+            </li>
+            <li>
+              <strong>Portofolio calon guru</strong>
+              <span>Halaman profil yang memuat karya dan pengalaman mengajar.</span>
+            </li>
+            <li>
+              <strong>Media ajar interaktif</strong>
+              <span>Satu halaman berisi materi dengan minimal satu interaksi JavaScript.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="rules-prizes">
+          <article class="info-block" aria-labelledby="judul-aturan">
+            <h3 id="judul-aturan">Ketentuan karya</h3>
+            <ul class="check-list">
+              <li>Memakai HTML, CSS, dan JavaScript tanpa framework.</li>
+              <li>Kode dipisah menjadi <code>index.html</code>, <code>style.css</code>, dan <code>script.js</code>.</li>
+              <li>Tampilan responsif di desktop dan mobile.</li>
+              <li>Memakai elemen HTML semantik.</li>
+              <li>Gambar dan font harus milik sendiri atau berlisensi bebas.</li>
+            </ul>
+          </article>
+
+          <article class="info-block" aria-labelledby="judul-hadiah">
+            <h3 id="judul-hadiah">Hadiah</h3>
+            <ol class="prize-list">
+              <li><span>Juara 1</span><strong>Rp3.000.000</strong></li>
+              <li><span>Juara 2</span><strong>Rp2.000.000</strong></li>
+              <li><span>Juara 3</span><strong>Rp1.000.000</strong></li>
+            </ol>
+            <p class="small">Semua finalis mendapat sertifikat.</p>
+          </article>
+        </div>
+
+        <div id="jadwal" class="timeline-wrap" aria-labelledby="judul-jadwal">
+          <h3 id="judul-jadwal">Jadwal</h3>
+          <ol class="timeline">
+            <li><time datetime="2026-11-09">9 Nov – 5 Des</time><span>Pendaftaran dibuka</span></li>
+            <li><time datetime="2026-12-07">7 Des</time><span>Technical meeting daring</span></li>
+            <li><time datetime="2026-12-08">8 – 14 Des</time><span>Masa pengerjaan, kumpul paling lambat 14 Des pukul 23.59</span></li>
+            <li><time datetime="2026-12-20">20 Des</time><span>Presentasi final dan pengumuman juara</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORMULIR PENDAFTARAN ============ -->
+    <section id="daftar" class="section section-form" aria-labelledby="judul-daftar">
+      <div class="container form-layout">
+        <header class="section-head">
+          <h2 id="judul-daftar">Formulir pendaftaran</h2>
+          <p>Isi data berikut dengan benar. Konfirmasi dan tautan grup peserta dikirim ke email dan WhatsApp yang Anda daftarkan.</p>
+        </header>
+
+        <div class="form-panel">
+          <form id="registerForm" novalidate>
+            <div class="field">
+              <label for="nama">Nama lengkap</label>
+              <input type="text" id="nama" name="nama" autocomplete="name" aria-describedby="nama-error" required>
+              <p class="error" id="nama-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="email-error" required>
+              <p class="error" id="email-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="whatsapp">Nomor WhatsApp</label>
+              <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="08123456789" aria-describedby="whatsapp-error" required>
+              <p class="error" id="whatsapp-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="institusi">Asal kampus atau sekolah</label>
+              <input type="text" id="institusi" name="institusi" autocomplete="organization" aria-describedby="institusi-error" required>
+              <p class="error" id="institusi-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="kategori">Kategori lomba</label>
+              <select id="kategori" name="kategori" aria-describedby="kategori-error" required>
+                <option value="">Pilih kategori</option>
+                <option value="Landing page edukasi">Landing page edukasi</option>
+                <option value="Portofolio calon guru">Portofolio calon guru</option>
+                <option value="Media ajar interaktif">Media ajar interaktif</option>
+              </select>
+              <p class="error" id="kategori-error" role="alert"></p>
+            </div>
+
+            <div class="field field-check">
+              <input type="checkbox" id="setuju" name="setuju" aria-describedby="setuju-error" required>
+              <label for="setuju">Saya menyatakan karya yang dikumpulkan adalah hasil kerja sendiri dan menyetujui ketentuan lomba.</label>
+              <p class="error" id="setuju-error" role="alert"></p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Kirim pendaftaran</button>
+          </form>
+
+          <div id="successPanel" class="success-panel" role="status" hidden tabindex="-1">
+            <h3>Pendaftaran berhasil</h3>
+            <p id="successText"></p>
+            <button type="button" id="resetBtn" class="btn btn-ghost">Daftarkan peserta lain</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year">2026</span> Program Studi Pendidikan Teknik Informatika. Dibuat sebagai tugas Praktikum Pemrograman Web.</p>
+      <a href="#beranda">Kembali ke atas</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
