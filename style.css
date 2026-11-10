@@ -138,11 +138,10 @@ code {
   font: 800 1.15rem var(--font-display);
   text-decoration: none;
 }
-.brand-mark {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--primary);
-  background: var(--accent);
+.brand-logo {
+  display: block;
+  height: 44px;
+  width: auto;
 }
 
 .nav-list {
